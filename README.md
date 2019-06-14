@@ -1,3 +1,7 @@
+# ARM Templates for Azure HPC Cluster Deployments
+
+This repository contains Azure Resource Manager templates specifically for Azure HPC SKUs. We aim to keep this repository as a community effort, so any new templates, feedback, suggestions are most welcome!
+
 
 # Contributing
 
