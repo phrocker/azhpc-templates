@@ -33,11 +33,11 @@ The head node can be identified as "`<vmss-name>-hd"`. The RSA Public Key is add
 
 ### Home Folder
 
-The `\home` folder is mounted over NFS and is hosted by the head node. Review `\etc\exports` for more details.
+The `/home` folder is mounted over NFS and is hosted by the head node. Review `/etc/exports/ for more details.
 
 ### Compute Nodes
 
-Compute nodes are the actual VMSS. Run the `generateHostFile` script under `\home\<user>\scripts` folder to generate a list of compute nodes that are part of this VMSS. The hostfile will be generated under `\home\<user>\scripts`.
+Compute nodes are the actual VMSS. Run the `generateHostFile` script under `/home/<user>/scripts` folder to generate a list of compute nodes that are part of this VMSS. The hostfile will be generated under `/home/<user>/scripts`.
 
 *Note*: Please review [`hn-setup.sh`](hn-setup.sh) and [`cn-setup.sh`](cn-setup.sh) for more details on how the head node and compute nodes are configured.
 
