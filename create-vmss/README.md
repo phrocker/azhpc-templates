@@ -37,7 +37,7 @@ The `/home` folder is mounted over NFS and is hosted by the head node. Review `/
 
 ### Compute Nodes
 
-Compute nodes are the actual VMSS. Run the `generateHostFile` script under `/home/<user>/scripts` folder to generate a list of compute nodes that are part of this VMSS. The hostfile will be generated under `/home/<user>/scripts`.
+Compute nodes are the actual VMSS. Run the `generateHostFile` script under `/home/<user>/scripts` folder to generate a list of compute nodes that are part of this VMSS. The hostfile will be generated under user's home folder.
 
 *Note*: Please review [`hn-setup.sh`](hn-setup.sh) and [`cn-setup.sh`](cn-setup.sh) for more details on how the head node and compute nodes are configured.
 

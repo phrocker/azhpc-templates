@@ -33,13 +33,25 @@ systemctl start nfs-idmap
 systemctl restart nfs-server
 
 USER=$2
-cat << EOF >> /home/$USER/.bashrc
-export WCOLL=/home/$USER/scripts/hostfile
-EOF
-chown $USER:$USER /home/$USER/.bashrc
+GCC_MODULE_NAME=$(basename `find /usr/share/Modules/modulefiles/ -iname gcc-*`)
 
-touch /home/$USER/scripts/hostfile
-chown $USER:$USER /home/$USER/scripts/hostfile
+cat << EOF >> /home/$USER/.bashrc
+export WCOLL=/home/$USER/hostfile
+module load ${GCC_MODULE_NAME}
+EOF
+
+# Load corresponding MPI library (based on branch name)
+MPI_MODULE_NAME=$(basename `find /usr/share/Modules/modulefiles/mpi/ -iname ${githubBranch}-*`)
+
+if [[ $MPI_MODULE_NAME ]]; then
+    cat << EOF >> /home/$USER/.bashrc
+module load mpi/${MPI_MODULE_NAME}
+EOF
+fi
+
+chown $USER:$USER /home/$USER/.bashrc
+touch /home/$USER/hostfile
+chown $USER:$USER /home/$USER/hostfile
 
 # Setup passwordless ssh to compute nodes
 ssh-keygen -f /home/$USER/.ssh/id_rsa -t rsa -N ''
@@ -59,11 +71,10 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Add script for generating hostfile
 cd /tmp
-echo "git clone -b $githubBranch https://github.com/$githubUser/$githubRepo.git"
 git clone -b $githubBranch https://github.com/$githubUser/$githubRepo.git
-cd azure-quickstart-templates/create-hpc-vmss-linux/scripts/
+cd azhpc-templates/create-vmss/scripts/
 mkdir -p /home/$USER/scripts
 cp -r * /home/$USER/scripts/
 chmod +x /home/$USER/scripts/*
 chown $USER:$USER /home/$USER/scripts
-cd /tmp && rm -rf /tmp/*
+cd / && rm -rf /tmp/*
