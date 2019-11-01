@@ -6,7 +6,8 @@
 			"defaultValue": "Standard_HC44rs",
 			"allowedValues": [
 				"Standard_HC44rs",
-				"Standard_HB60rs"
+				"Standard_HB60rs",
+				"Standard_HB120rs_v2"
 			],
 			"type": "String",
 			"metadata": {
