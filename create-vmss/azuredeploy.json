@@ -292,6 +292,7 @@
 			"apiVersion": "[variables('computeApiVersion')]",
 			"location": "[variables('resourceLocation')]",
 			"properties": {
+				"singlePlacementGroup": false,
 				"overprovision": true,
 				"upgradePolicy": {
 					"mode": "Manual"
